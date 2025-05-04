@@ -39,7 +39,7 @@ app.post('/upload',(req,res)=>{
 
 
 //delete all files
-app.post('/delete',(req,res)=>{
+app.get('/delete',(req,res)=>{
     fs.readdir("./Files",( err, files)=>{
         if(err){
             console.log(err);
@@ -56,6 +56,36 @@ app.post('/delete',(req,res)=>{
 
             console.log("All Files deleted successfully");
             res.redirect("/");
+        }
+    })
+})
+
+//delete specific file
+app.get('/delete-specific',( req,res)=>{
+    res.render('deletespecific');
+})
+
+app.post('/confirmdeletespecific',(req,res)=>{
+    const thefile = req.body.filename;
+    fs.readdir("./Files",(err,files)=>{
+        if(err){
+            console.log(err);
+            return res.status(500).send('Internal Server Error');
+        }
+        if(files.includes(thefile)){
+            fs.unlink(path.join(__dirname,'Files',thefile),(err)=>{
+                if(err){
+                    console.log(`Error deleting ${thefile}`);
+                }
+                else{
+                    console.log(`${thefile} deleted successfully`);
+                    res.redirect('/');
+                }
+            })
+        }
+        else{
+            console.log(`${thefile} does not exist`);
+            res.redirect('/');
         }
     })
 })

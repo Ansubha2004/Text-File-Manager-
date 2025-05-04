@@ -17,8 +17,11 @@
         </form>
         <div class="w-auto h-auto flex gap-5">
             <button form="Fileform" type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Upload</button>
-            <form action="/delete" method="post" onsubmit="return confirm('Are you sure, you want to delete all the files?')">
+            <form action="/delete" method="get" onsubmit="return confirm('Are you sure, you want to delete all the files?')">
                 <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Delete All Files</button>
+            </form>
+            <form action="/delete-specific" method="get" >
+                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Delete</button>
             </form>
         </div>
         <br>

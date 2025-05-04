@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Text File Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="flex flex-col items-center justify-center border-box p-[50px] bg-zinc-800 w-screen min-h-screen text-white">
+        <form id="Fileform1" action="/confirmdeletespecific" method="post" onsubmit="return confirm('Are You sure, you want to delete the specific file?')" class=" w-[40%] flex flex-col items-center justify-center">
+                <label for="filename" class="text-2xl font-bold">Enter File Name to Be Deleted</label>
+                <input type="text" id="filename" name="filename" placeholder="Type exact File Name" class="border-box px-5 w-full h-10 bg-zinc-700 rounded-md my-4  outline-none">
+        </form>
+        <button form="Fileform1" type="submit"  class="px-4 py-2 bg-blue-500 text-white rounded">Delete</button>
+    </div>
+    
+</body>
+</html>
