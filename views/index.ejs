@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text File Manager</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body >
-    <div class="flex flex-col items-center justify-center border-box p-[50px] bg-zinc-800 w-screen min-h-screen text-white">
+    <div class="flex flex-col items-center justify-center border-box p-[50px] bg-zinc-800 w-screen min-h-screen text-white overflow-hidden">
         <form id="Fileform" action="/upload" method="post" class=" w-[40%] flex flex-col items-start justify-center">
                 <label for="filename" class="text-2xl font-bold">Enter File Name</label>
                 <input type="text" id="filename" name="filename" placeholder="ex: Comapny details -----> Companydetails.txt" class="border-box px-5 w-full h-10 bg-zinc-700 rounded-md my-4  outline-none">
@@ -27,10 +28,10 @@
         <br>
         <br>
         <br>
-        <div class="max-w-full h-auto flex  justify-center items-center gap-[20px] ">
+        <div class="max-w-[90%] min-h-auto flex  scroll-smooth no-scrollbar items-center  overflow-x-auto ">
             <% if (documents.length > 0) { %>
                 <% documents.forEach((document)=>{ %>
-                    <div class="min-h-30 min-w-80 rounded-md bg-zinc-600 break-words border-box p-3 flex flex-col justify-between items-center">
+                    <div class="min-h-30 min-w-80 rounded-md bg-zinc-600 break-words border-box p-3 flex flex-col justify-between items-center mx-[20px]">
                         <p class="text-[24px]"><%= document %></p>
                         <div class="w-full flex justify-between items-center">
                             <a href="/read/<%= document %>" class="text-blue-400">Click here to Read File</a>
