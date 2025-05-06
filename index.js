@@ -90,7 +90,9 @@ app.post('/confirmdeletespecific',(req,res)=>{
     })
 })
 
+//readfile
 app.get('/read/:filename',(req,res)=>{
+
     const filename = req.params.filename;
     const filePath = path.join(__dirname, 'Files', filename);
     
@@ -108,6 +110,38 @@ app.get('/read/:filename',(req,res)=>{
     });
 })
 
+//edit file text
+app.get('/edit/:filename',(req,res)=>{
+    const filename = req.params.filename;
+    const filepath = path.join(__dirname,"Files",filename);
+
+    fs.readFile(filepath,"utf-8",(err,data)=>{
+        if(err){
+            console.error('Error reading file:',err);
+            return res.status(500).send('Error reading File');
+        }
+        res.render('editdata',{
+            filename: filename,
+            content: data
+        })
+    })
+})
+
+app.post('/editconfirm/:filename',(req,res)=>{
+    const filecontent=req.body.filecontent;
+    const filename = req.params.filename;
+    fs.writeFile(`./Files/${filename}`,filecontent,(err)=>{
+        if(err){
+            console.log(err);
+            return res.status(500).send('Internal Server Error');
+        }
+        else{
+            console.log('File Edited');
+            res.redirect('/');
+        }
+    })
+    
+})
 
 app.all('*',(req,res)=>{
     res.status(404).send('404 Not Found');

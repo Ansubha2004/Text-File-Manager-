@@ -30,9 +30,12 @@
         <div class="max-w-full h-auto flex  justify-center items-center gap-[20px] ">
             <% if (documents.length > 0) { %>
                 <% documents.forEach((document)=>{ %>
-                    <div class="min-h-20 min-w-50 rounded-md bg-zinc-600 break-words border-box p-3 flex flex-col justify-between items-start">
+                    <div class="min-h-30 min-w-80 rounded-md bg-zinc-600 break-words border-box p-3 flex flex-col justify-between items-center">
                         <p class="text-[24px]"><%= document %></p>
-                        <a href="/read/<%= document %>" class="text-blue-400">Click here to Read File</a>
+                        <div class="w-full flex justify-between items-center">
+                            <a href="/read/<%= document %>" class="text-blue-400">Click here to Read File</a>
+                            <a href="/edit/<%= document %>" class="text-blue-400">Edit Content</a>
+                        </div>
                     </div>
                 <% }) %> 
             <% } else { %>
